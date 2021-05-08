@@ -1,6 +1,6 @@
 .PHONY: build test clean
 
-build:
+build: test
 	mkdir build -p
 	zip -u build/MyClassifier.zip \
 		src/MyClassifier.py \

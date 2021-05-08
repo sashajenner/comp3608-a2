@@ -24,11 +24,13 @@ test_data = [row.split(',') for row in test_f.readlines()]
 
 
 if alg == 'NB':
-    classy = NB
+    classy = NB()
 elif alg == 'DT':
-    classy = DT
-
+    classy = DT()
 
 classy.train(train_data)
-
 classy.test(test_data)
+
+
+train_f.close()
+test_f.close()
