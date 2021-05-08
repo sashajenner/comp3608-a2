@@ -1,17 +1,19 @@
 import numpy as np
 import math
-import helpers import sample_std, pnorm
+from helpers import pnorm
 
 class NB:
     def __init__(self):
+        # Number of attributes
         self.n_attrs = None
 
-        self.p_yes = None
-        self.p_no = None
+        self.p_yes = None # P(yes)
+        self.p_no = None # P(no)
 
+        # Mean/std of each attribute with yes/no
         self.means_yes = None
-        self.stds_yes = None
         self.means_no = None
+        self.stds_yes = None
         self.stds_no = None
 
     def train(self, data):
@@ -23,29 +25,36 @@ class NB:
         n_no = 0
 
         sums_yes = np.zeros(self.n_attrs)
-        sums_squared_yes = np.zeros(self.n_attrs)
         sums_no = np.zeros(self.n_attrs)
-        sums_squared_no = np.zeros(self.n_attrs)
+        sums_sq_diff_yes = np.zeros(self.n_attrs)
+        sums_sq_diff_no = np.zeros(self.n_attrs)
 
         for row in data:
             if row[-1] == 'yes\n':
                 n_yes += 1
                 for i in range(self.n_attrs):
                     sums_yes[i] += float(row[i])
-                    sums_squared_yes[i] += float(row[i]) ** 2
             elif row[-1] == 'no\n':
                 n_no += 1
                 for i in range(self.n_attrs):
                     sums_no[i] += float(row[i])
-                    sums_squared_no[i] += float(row[i]) ** 2
 
-        self.p_yes = n_yes / len(data)
-        self.p_no = n_no / len(data)
+        self.p_yes = n_yes / n_rows
+        self.p_no = n_no / n_rows
 
-        self.means_yes = sums_yes / n_rows
-        self.stds_yes = sample_std(sums_squared_yes, self.means_yes, n_rows)
-        self.means_no = sums_no / n_rows
-        self.stds_no = sample_std(sums_squared_no, self.means_no, n_rows)
+        self.means_yes = sums_yes / n_yes
+        self.means_no = sums_no / n_no
+
+        for row in data:
+            if row[-1] == 'yes\n':
+                for i in range(self.n_attrs):
+                    sums_sq_diff_yes[i] += (float(row[i]) - self.means_yes[i]) ** 2
+            elif row[-1] == 'no\n':
+                for i in range(self.n_attrs):
+                    sums_sq_diff_no[i] += (float(row[i]) - self.means_no[i]) ** 2
+
+        self.stds_yes = (sums_sq_diff_yes / (n_yes - 1)) ** 0.5
+        self.stds_no = (sums_sq_diff_no / (n_no - 1)) ** 0.5
 
     def test(self, data):
 
