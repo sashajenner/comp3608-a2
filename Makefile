@@ -2,7 +2,7 @@
 
 build: test
 	mkdir build -p
-	zip -u build/MyClassifier.zip \
+	zip -uj build/MyClassifier.zip \
 		src/*.py \
 		data/pima.csv \
 		docs/report.pdf
