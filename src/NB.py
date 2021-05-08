@@ -30,11 +30,11 @@ class NB:
         sums_sq_diff_no = np.zeros(self.n_attrs)
 
         for row in data:
-            if row[-1] == 'yes\n':
+            if row[-1] == 'yes':
                 n_yes += 1
                 for i in range(self.n_attrs):
                     sums_yes[i] += float(row[i])
-            elif row[-1] == 'no\n':
+            elif row[-1] == 'no':
                 n_no += 1
                 for i in range(self.n_attrs):
                     sums_no[i] += float(row[i])
@@ -46,10 +46,10 @@ class NB:
         self.means_no = sums_no / n_no
 
         for row in data:
-            if row[-1] == 'yes\n':
+            if row[-1] == 'yes':
                 for i in range(self.n_attrs):
                     sums_sq_diff_yes[i] += (float(row[i]) - self.means_yes[i]) ** 2
-            elif row[-1] == 'no\n':
+            elif row[-1] == 'no':
                 for i in range(self.n_attrs):
                     sums_sq_diff_no[i] += (float(row[i]) - self.means_no[i]) ** 2
 
