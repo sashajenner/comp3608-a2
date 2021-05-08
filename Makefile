@@ -1,0 +1,15 @@
+.PHONY: build test clean
+
+build:
+	mkdir build -p
+	zip -u build/MyClassifier.zip \
+		src/MyClassifier.py \
+		data/pima.csv \
+		docs/report.pdf
+		#data/pima-folds.csv data/pima-CFS.csv data/pima-discretised-CFS.csv
+
+test:
+	./test.sh
+
+clean:
+	rm build/*
