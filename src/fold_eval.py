@@ -21,7 +21,7 @@ for row in data_f.readlines():
 
     row = row.split(",")
     folds[fold_num-1].append(row)
-    
+
 data_f.close()
 
 
@@ -64,6 +64,3 @@ for k in range(len(folds)):
 
 
 print(sum(accuracies) / len(accuracies))
-
-
-

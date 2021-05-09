@@ -1,1 +1,9 @@
 __pycache__/
+*.lof
+*.aux
+*.bbl
+*.blg
+*.log
+*.lot
+*.toc
+*.out
