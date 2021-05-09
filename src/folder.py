@@ -46,12 +46,12 @@ assert(sum(folds_num_y) == n_yes)
 # Fill in folds
 for row in data:
     for i in range(n_folds):
-        if folds_num_y[i] != 0 and row[-1] == 'yes':
+        if row[-1] == 'yes' and folds_num_y[i] > 0:
             folds_num_y[i] -= 1
             folds_num[i] -= 1
             folds[i].append(row)
             break
-        elif folds_num[i] != 0 and row[-1] == 'no':
+        elif row[-1] == 'no' and folds_num[i] - folds_num_y[i] > 0:
             folds_num[i] -= 1
             folds[i].append(row)
             break
