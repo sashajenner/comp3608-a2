@@ -64,5 +64,9 @@ for i in range(n_folds):
     if i != n_folds - 1:
         print()
 
+for i in range(n_folds):
+    assert(folds_num[i] == 0)
+    assert(folds_num_y[i] == 0)
+
 
 data_f.close()
