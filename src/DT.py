@@ -148,10 +148,12 @@ class DT:
         #print("testing")
         #print(data)
 
+        results = []
         for i in range(len(data)):
-            self.test_row(data[i])
+            results.append(self.test_row(data[i]))
 
         #self.test_row("low,high,low,high,high,high,high,high".split(","))
+        return results
 
 
     def test_row(self, row):
@@ -162,8 +164,7 @@ class DT:
 
             attr = row[node["attr"]]
             if attr not in node["children"]:
-                print("yes")
-                return
+                return "yes"
             node = node["children"][attr]
 
-        print(node["value"])
+        return node["value"]
