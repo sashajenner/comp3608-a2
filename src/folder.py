@@ -33,11 +33,15 @@ upper = math.ceil(n_rows / n_folds)
 n_upper = round((n_rows / n_folds - lower) * n_folds)
 folds_num = [upper if i < n_upper else lower for i in range(n_folds)]
 
+assert(sum(folds_num) == n_rows)
+
 # Find the number of yes in each fold
 lower_y = math.floor(n_yes / n_folds)
 upper_y = math.ceil(n_yes / n_folds)
 n_upper_y = round((n_yes / n_folds - lower_y) * n_folds)
 folds_num_y = [upper_y if i < n_upper_y else lower_y for i in range(n_folds)]
+
+assert(sum(folds_num_y) == n_yes)
 
 # Fill in folds
 for row in data:
