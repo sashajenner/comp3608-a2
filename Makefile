@@ -1,4 +1,4 @@
-PYTHON=python3.8
+PYTHON=python3
 
 .PHONY: test clean
 
@@ -13,7 +13,7 @@ data/pima-folds.csv: src/folder.py data/pima.csv
 #	cd docs && xelatex report.tex && cd ../
 
 test:
-	./test.sh
+	sh test.sh
 
 clean:
 	#rm docs/*.aux docs/*.log docs/*.out docs/report.pdf; rm -r build
