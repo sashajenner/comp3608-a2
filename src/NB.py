@@ -57,6 +57,7 @@ class NB:
         self.stds_no = (sums_sq_diff_no / (n_no - 1)) ** 0.5
 
     def test(self, data):
+        results = []
 
         for row in data:
             p_yes_g_row = 1
@@ -69,6 +70,8 @@ class NB:
             p_no_g_row *= self.p_no
 
             if p_yes_g_row >= p_no_g_row:
-                print('yes')
+                results.append('yes')
             else:
-                print('no')
+                results.append('no')
+
+        return results

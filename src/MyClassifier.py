@@ -29,7 +29,9 @@ elif alg == 'DT':
     classy = DT()
 
 classy.train(train_data)
-classy.test(test_data)
+
+for result in classy.test(test_data):
+    print(result)
 
 
 train_f.close()
