@@ -63,7 +63,7 @@ class DT:
                 attr_where = np.array(x_attr) == attr_val
                 x_attr_val = [i for i,j in zip(x, attr_where) if j]
                 y_attr_val = [i for i,j in zip(y, attr_where) if j]
-                #print(best_attr, attr_val, y_attr_val) 
+                #print(best_attr, attr_val, y_attr_val)
 
                 node["children"][attr_val] = self.dtl(
                     x_attr_val,
@@ -90,7 +90,7 @@ class DT:
                 attr_where = np.array(x_attr) == attr_val
                 y_attr_val = [i for i,j in zip(y, attr_where) if j]
 
-                #print(attr, attr_val, y_attr_val) 
+                #print(attr, attr_val, y_attr_val)
                 prop = sum(attr_where) / len(y)
                 attr_entropy += DT.entropy(y_attr_val) * prop
 
@@ -119,7 +119,7 @@ class DT:
         for i in counts:
             p = counts[i] / len(y)
             h += -p * math.log2(p)
-        
+
         return h
 
 
@@ -142,7 +142,7 @@ class DT:
 
         #return sorted(counts.items(), key=lambda x:x[1])[-1][0]
 
-    
+
 
     def test(self, data):
         #print("testing")
@@ -165,9 +165,5 @@ class DT:
                 print("yes")
                 return
             node = node["children"][attr]
-            
+
         print(node["value"])
-
-
-
-
