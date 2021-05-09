@@ -1,0 +1,37 @@
+\section{Results \& Discussion}
+
+
+All results are 10-fold stratified cross validation accuracy figures in percentage (\%).
+
+\begin{tabular}{|m{2cm}*{8}{|c}|}
+    \hline
+    Numeric Data & ZeroR & 1R & 1NN &5NN &NB &MLP &SVM & MyNB \\
+    \hline
+    No feature selection & 65.1042 &70.8333 &67.8385 &74.4792 &75.1302 &75.3906 &76.3021 \\
+    \hline
+    CFS & 65.1042 &70.8333 &69.0104 &74.4792 &76.3021 &75.7813&76.6927 \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|m{2cm}*{6}{|c}|}
+    \hline
+    Nominal Data & DT unpruned &DT pruned &MyDT &Bagg &Boost &RF \\
+    \hline
+    No feature selection &75 & 75.3906 & &74.8698&76.1719&73.1771 \\
+    \hline
+    CFS & 79.4271 & 79.4271 & & 78.5156 & 78.6458 & 78.9063 \\
+    \hline
+\end{tabular}
+
+\begin{obeylines}
+    \include{DT_unpruned}
+    \include{DT_pruned}
+\end{obeylines}
+
+
+\subsection{Feature Selection}
+
+
+\subsection{Comparison of Classifiers}
+
+
