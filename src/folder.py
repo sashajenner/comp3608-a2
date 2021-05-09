@@ -50,9 +50,11 @@ for row in data:
             folds_num_y[i] -= 1
             folds_num[i] -= 1
             folds[i].append(row)
+            break
         elif folds_num[i] != 0 and row[-1] == 'no':
             folds_num[i] -= 1
             folds[i].append(row)
+            break
 
 # Print folds
 for i in range(n_folds):
