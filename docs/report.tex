@@ -3,26 +3,30 @@
 \usepackage[margin=0.5in]{geometry}
 \usepackage{hyperref}
 \usepackage{array}
+\usepackage[intoc]{nomencl}
+\makenomenclature
+\usepackage[table]{xcolor}
 
 \begin{document}
 
 \title{Predicting Diabetes in the Pima Indians: An Investigation into Classification Strategies}
+\author{Group 23: 490424010, 490390494}
 \maketitle
-
-\begin{center}Group 23\end{center}
-\begin{center}490424010, 490390494\end{center}
 
 \tableofcontents
 \listoffigures
 \listoftables
 
-\input{introduction}
-\input{data}
-\input{results_and_discussion}
-\input{conclusion}
-\input{reflection}
+\include{introduction}
+\include{data}
+\include{results_and_discussion}
+\include{conclusion}
+\include{reflection}
 
 \bibliography{bib}
 \bibliographystyle{acm}
+
+\newpage
+\printnomenclature
 
 \end{document}

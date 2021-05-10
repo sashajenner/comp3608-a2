@@ -22,6 +22,7 @@ docs/report.pdf: docs/*.tex docs/*.bib
 	cd docs && \
 		xelatex report && \
 		bibtex report && \
+		makeindex -s nomencl.ist -o report.nls report.nlo && \
 		xelatex report && \
 		xelatex report && \
 		cd ../
@@ -32,5 +33,5 @@ test:
 clean:
 	rm -r build
 	cd docs && \
-		rm *.aux *.log *.bbl *.blg *.lof *.lot *.out *.toc *.pdf && \
+		rm *.aux *.log *.bbl *.blg *.lof *.lot *.out *.toc report.pdf && \
 		cd ../

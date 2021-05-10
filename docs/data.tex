@@ -3,4 +3,28 @@
 % This section should describe the dataset, mentioning the number of attributes and classes. It should also
 % briefly describe the CFS method and list the attributes selected by the CFS.
 
-The dataset used throughout this paper originates from the National Institute of Diabetes and Digestive and Kidney Diseases and was first used in a demonstration of the ADAP Learning Algorithm in 1988 \cite{pima}.
+The dataset used throughout this paper originates from the National Institute of Diabetes and Digestive and Kidney Diseases and was first used in a demonstration of the ADAP Learning Algorithm in 1988 \cite{pima}. It consists of 768 non-diabetic females aged at least 21 years old and of Pima Indian heritage. There are 9 columns per row, the first 8 of which are biometric measurement attributes whilst the final one is the class consisting of whether or not the individual with be diagnosed with diabetes. A description of each column in the dataset is shown in Table \ref{tab:cols}.
+
+\begin{table}[h!]
+    \caption{A synopsis of the dataset's columns with those selected by CFS highlighted.\label{tab:cols}}
+    \begin{center}
+        \begin{tabular}{|m{14cm}|l|}
+        \hline
+        \textbf{Description} & \textbf{Units} \\
+        \hline
+        Number of times pregnant & n/a\nomenclature{n/a}{Not applicable} \\
+        \rowcolor{yellow}Plasma glucose concentration at 2 hours in an oral glucose tolerance test & mg/dL\nomenclature{mg/dL}{Milligrams per decilitre} \\
+        Diastolic blood pressure & mm Hg\nomenclature{mm Hg}{Millimetres of mercury} \\
+        Triceps skin fold thickness & mm\nomenclature{mm}{Millimetres} \\
+        \rowcolor{yellow}Serum insulin level & $\mu$U/mL\nomenclature{$\mu$U/mL}{Micro enzyme units per millilitre} \\
+        \rowcolor{yellow}Body mass index (BMI) & kg/m$^2$\nomenclature{kg/m$^2$}{Weight in kilograms per height in metres squared} \\
+        \rowcolor{yellow}Diabetes pedigree function (likelihood of diabetes based on family history) & n/a \\
+        \rowcolor{yellow}Age & years \\
+        Is diabetes diagnosed between 1 and 5 years after the above measurements are recorded? & n/a\\
+        \hline
+    \end{tabular}
+    \end{center}
+    The Correlation-based Feature Selection (CFS)\nomenclature{CFS}{Correlation-based feature selection} method is a way of determining a representative set of attributes which are highly correlated with the class but uncorrelated with each other. This can improve the training of a classification model by removing features that are not predictive of the class. \\
+
+    Using the CFS algorithm implemented in Weka 3.8.5 \cite{weka}, the attributes that were selected are highlighted in Table \ref{tab:cols}.
+\end{table}
