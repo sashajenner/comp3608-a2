@@ -35,17 +35,25 @@ Tables \ref{tab:acc:num} and \ref{tab:acc:nom} present all the resulting accurac
     \end{center}
 \end{table}
 
-\subsection{DT diagrams}
-\begin{obeylines}
-    \input{DT_unpruned}
-    \input{DT_pruned}
-\end{obeylines}
+\subsection{DT Diagrams}
+Decision trees were built on the full discretised dataset using three different algorithms: MyDT, and two DT classifiers from Weka (DT unpruned and DT pruned). The two Weka variants were built using J48 (an implementation of the C4.5 algorithm) with default parameters, but differ in that one has been pruned in addition to the other \cite{weka}. The DT diagrams are displayed in Figures \ref{fig:mydt}, \ref{fig:dt_unprune} and \ref{fig:dt_prune}.
+
+\begin{figure}[h!]
+    \begin{obeylines}
+        \input{DT_unpruned}
+    \end{obeylines}
+    \caption{The DT diagram of the Weka J48 algorithm \textit{without} pruning and trained on the full discretised dataset.\label{fig:dt_unprune}}
+\end{figure}
+
+\begin{figure}[h!]
+    \begin{obeylines}
+        \input{DT_pruned}
+    \end{obeylines}
+    \caption{The DT diagram of the Weka J48 algorithm \textit{with} pruning and trained on the full discretised dataset.\label{fig:dt_prune}}
+\end{figure}
 
 \subsection{Discussion}
 
 \subsubsection{Feature Selection}
 
-
 \subsubsection{Comparison of Classifiers}
-
-
