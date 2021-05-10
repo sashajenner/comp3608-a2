@@ -31,7 +31,7 @@ test:
 	sh test.sh
 
 clean:
-	rm -r build
-	cd docs && \
-		rm *.aux *.log *.bbl *.blg *.lof *.lot *.out *.toc report.pdf && \
+	rm -r build; \
+		cd docs && \
+		rm *.aux *.log *.bbl *.blg *.lof *.lot *.out *.toc *.ilg *.nlo *.nls report.pdf && \
 		cd ../

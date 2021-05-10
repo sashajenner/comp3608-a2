@@ -1,12 +1,12 @@
 \section{Results and Discussion}
 
 \subsection{Classifier Accuracy}
-The canonical Na\"ive Bayes (NB)\nomenclature{NB}{Na\"ive Bayes} and Decision Tree (DT)\nomenclature{DT}{Decision Tree} classification algorithms were implemented with tie decisions resulting in a 'yes' and are hereafter referred to as MyNB and MyDT respectively. 10-fold stratified cross validation was then performed on these algorithms and 12 other inbuilt Weka algorithms using the dataset described in section \ref{sec:data} after normalisation and discretisation for the numeric and nominal classification algorithms respectively.
+The canonical Na\"ive Bayes (NB)\nomenclature{NB}{Na\"ive Bayes} and Decision Tree (DT)\nomenclature{DT}{Decision Tree} classification algorithms were implemented with tie decisions resulting in a `yes' and are hereafter referred to as MyNB and MyDT respectively. 10-fold stratified cross validation was then performed on these algorithms and 12 other inbuilt Weka algorithms using the dataset described in section \ref{sec:data} after normalisation and discretisation for the numeric and nominal classification algorithms respectively.
 
-Tables \ref{tab:acc:num} and \ref{tab:acc:nom} present all the resulting accuracy figures for each tested classification algorithm shown in percentage (\%).
+Tables \ref{tab:acc:num} and \ref{tab:acc:nom} present all the resulting accuracy figures for each tested classification algorithm, shown in percentage (\%), using both the full dataset and the dataset after CFS.
 
 \begin{table}[h!]
-    \caption{The 10-fold stratified cross validation accuracy in percentage (\%) of each tested \textit{numeric} classification algorithm. \label{tab:acc:num}}
+    \caption{The 10-fold stratified cross validation accuracy in percentage (\%) of each tested \textit{numeric} classification algorithm using the dataset with and without CFS. \label{tab:acc:num}}
     \begin{center}
     \begin{tabular}{|m{2cm}*{8}{|c}|}
         \hline
@@ -21,7 +21,7 @@ Tables \ref{tab:acc:num} and \ref{tab:acc:nom} present all the resulting accurac
 \end{table}
 
 \begin{table}[h!]
-    \caption{The 10-fold stratified cross validation accuracy in percentage (\%) of each tested \textit{nominal} classification algorithm. \label{tab:acc:nom}}
+    \caption{The 10-fold stratified cross validation accuracy in percentage (\%) of each tested \textit{nominal} classification algorithm using the dataset with and without CFS. \label{tab:acc:nom}}
     \begin{center}
     \begin{tabular}{|m{2cm}*{6}{|c}|}
         \hline
