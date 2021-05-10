@@ -7,3 +7,6 @@ __pycache__/
 *.lot
 *.toc
 *.out
+*.ilg
+*.nlo
+*.nls

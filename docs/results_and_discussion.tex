@@ -1,37 +1,51 @@
-\section{Results \& Discussion}
+\section{Results and Discussion}
 
+\subsection{Classifier Accuracy}
+The canonical Na\"ive Bayes (NB)\nomenclature{NB}{Na\"ive Bayes} and Decision Tree (DT)\nomenclature{DT}{Decision Tree} classification algorithms were implemented with tie decisions resulting in a 'yes' and are hereafter referred to as MyNB and MyDT respectively. 10-fold stratified cross validation was then performed on these algorithms and 12 other inbuilt Weka algorithms using the dataset described in section \ref{sec:data} after normalisation and discretisation for the numeric and nominal classification algorithms respectively.
 
-All results are 10-fold stratified cross validation accuracy figures in percentage (\%).
+Tables \ref{tab:acc:num} and \ref{tab:acc:nom} present all the resulting accuracy figures for each tested classification algorithm shown in percentage (\%).
 
-\begin{tabular}{|m{2cm}*{8}{|c}|}
-    \hline
-    Numeric Data & ZeroR & 1R & 1NN &5NN &NB &MLP &SVM & MyNB \\
-    \hline
-    No feature selection & 65.1042 &70.8333 &67.8385 &74.4792 &75.1302 &75.3906 &76.3021 &75.2614 \\
-    \hline
-    CFS & 65.1042 &70.8333 &69.0104 &74.4792 &76.3021 &75.7813&76.6927 & 76.0407 \\
-    \hline
-\end{tabular}
+\begin{table}[h!]
+    \caption{The 10-fold stratified cross validation accuracy in percentage (\%) of each tested \textit{numeric} classification algorithm. \label{tab:acc:num}}
+    \begin{center}
+    \begin{tabular}{|m{2cm}*{8}{|c}|}
+        \hline
+        \textbf{Numeric Data} & ZeroR & 1R & 1NN &5NN &NB &MLP &SVM & \color{blue}MyNB \\
+        \hline
+        No feature selection & 65.1042 &70.8333 &67.8385 &74.4792 &75.1302 &75.3906 &76.3021 &75.2614 \\
+        \hline
+        CFS & 65.1042 &70.8333 &69.0104 &74.4792 &76.3021 &75.7813&76.6927 & 76.0407 \\
+        \hline
+    \end{tabular}
+    \end{center}
+\end{table}
 
-\begin{tabular}{|m{2cm}*{6}{|c}|}
-    \hline
-    Nominal Data & DT unpruned &DT pruned &MyDT &Bagg &Boost &RF \\
-    \hline
-    No feature selection &75 & 75.3906 &73.4484 &74.8698&76.1719&73.1771 \\
-    \hline
-    CFS & 79.4271 & 79.4271 &78.3869 & 78.5156 & 78.6458 & 78.9063 \\
-    \hline
-\end{tabular}
+\begin{table}[h!]
+    \caption{The 10-fold stratified cross validation accuracy in percentage (\%) of each tested \textit{nominal} classification algorithm. \label{tab:acc:nom}}
+    \begin{center}
+    \begin{tabular}{|m{2cm}*{6}{|c}|}
+        \hline
+        \textbf{Nominal Data} & DT unpruned &DT pruned &\color{blue}MyDT &Bagg &Boost &RF \\
+        \hline
+        No feature selection &75 & 75.3906 &73.4484 &74.8698&76.1719&73.1771 \\
+        \hline
+        CFS & 79.4271 & 79.4271 &78.3869 & 78.5156 & 78.6458 & 78.9063 \\
+        \hline
+    \end{tabular}
+    \end{center}
+\end{table}
 
+\subsection{DT diagrams}
 \begin{obeylines}
     \input{DT_unpruned}
     \input{DT_pruned}
 \end{obeylines}
 
+\subsection{Discussion}
 
-\subsection{Feature Selection}
+\subsubsection{Feature Selection}
 
 
-\subsection{Comparison of Classifiers}
+\subsubsection{Comparison of Classifiers}
 
 
