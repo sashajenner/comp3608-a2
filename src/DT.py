@@ -6,6 +6,21 @@ class DT:
         self.tree = None
 
 
+    def print(self, columns, node, depth=0):
+        #print(self.tree)
+
+        attr = columns[node["attr"]]
+        for child in node["children"]:
+            child_node = node["children"][child]
+
+            print(f"{'|   '*depth}{attr} = {child}", end="")
+            if child_node["type"] == "leaf":
+                print(f": {child_node['value']} {child_node['correct']}")
+            else:
+                print("")
+                self.print(columns, child_node, depth+1)
+
+
     def train(self, data):
         # the inputs
         x = [tuple(row[:-1]) for row in data]
@@ -24,22 +39,27 @@ class DT:
         if n == 0:
             return {
                 "type": "leaf",
-                "value": default
+                "value": default,
+                "correct": "(0.0/0.0)"
             }
 
         # All examples have same classification
         elif len(set(y)) == 1:
             return {
                 "type": "leaf",
-                "value": y[0]
+                "value": y[0],
+                "correct": f"({n:.1f}/{n:.1f})"
             }
 
 
         # All examples have same attributes
         elif len(set(x)) == 1:
+            mode = DT.mode(y)
+            correct = sum([i==mode for i in y])
             return {
                 "type": "leaf",
-                "value": DT.mode(y)
+                "value": DT.mode(y),
+                "correct": f"({correct:.1f}/{n:.1f})"
             }
 
 
