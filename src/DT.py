@@ -48,9 +48,8 @@ class DT:
             return {
                 "type": "leaf",
                 "value": y[0],
-                "correct": f"({n:.1f}/{n:.1f})"
+                "correct": f"({n:.1f}/{0:.1f})"
             }
-
 
         # All examples have same attributes
         elif len(set(x)) == 1:
@@ -59,7 +58,7 @@ class DT:
             return {
                 "type": "leaf",
                 "value": DT.mode(y),
-                "correct": f"({correct:.1f}/{n:.1f})"
+                "correct": f"({correct:.1f}/{n-correct:.1f})"
             }
 
 
