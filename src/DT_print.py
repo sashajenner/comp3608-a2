@@ -20,5 +20,3 @@ dt = DT()
 dt.train(train_data)
 
 dt.print(COLUMNS, dt.tree)
-
-
