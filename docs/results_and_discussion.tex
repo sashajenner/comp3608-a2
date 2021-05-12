@@ -34,9 +34,9 @@ Tables \ref{tab:acc:num} and \ref{tab:acc:nom} present all the resulting accurac
 \end{table}
 
 \subsection{DT Diagrams}
-Decision trees were built on the full discretised dataset using three different algorithms: MyDT, and two DT classifiers from Weka (DT unpruned and DT pruned). The two Weka variants were built using J48 (an implementation of the C4.5 algorithm) with default parameters, but differ in that one has been pruned in addition to the other \cite{weka}. The DT diagrams are displayed in Figures \ref{fig:mydt}, \ref{fig:dt_unprune} and \ref{fig:dt_prune}.
+Decision trees were built on the full discretised dataset using three different algorithms: MyDT, and two DT classifiers from Weka (DT unpruned and DT pruned). The MyDT tree was built using the ID3 algorithm (without pruning), which recursively builds a tree based on maximum information gain. The two Weka variants were built using J48 (an implementation of the C4.5 algorithm) with default parameters, but differ in that one has been pruned in addition to the other \cite{weka}. The DT diagrams are displayed in Figures \ref{fig:mydt}, \ref{fig:dt_unprune} and \ref{fig:dt_prune}.
 
-% TODO: move this on the same page
+% TODO: move this on the same page, or to appendix considering MyDT is huge
 
 \begin{figure}
     \begin{obeylines}
@@ -69,19 +69,29 @@ The best performing algorithm was the SVM, both with and without feature selecti
 On the other hand, the worst performing algorithms were ZeroR, 1R, and 1NN, achieving accuracies between 65\% and 71\%. These simple algorithms were likely not complex enough to capture patterns in the data that other algorithms were able to recognise (i.e. SVM, MLP, NB).
 
 
-Within the nominal data, 
-
-
+Within the nominal data, etc
 however all accuracies were between 65\% and 80\%. 
 
-Nominal better? Weird?? Discussion point? maybe for 3.3.5
-or is the data being predicted here actually different? if not its probs just overfitting (to noise) or something and thats something to mention.
+
+% should our NB be the same as wekas? how do the algos differ
+
+
+
 
 \subsubsection{Feature Selection}
 
 % Discuss the effect of the feature selection – did CFS select a subset of the original features, and if so, did the selected subset make intuitive sense to you? Was the feature selection beneficial, i.e. did it improve accuracy, or have any other advantages? Why do you think this is the case?
 
-what features did CFS select?
+glucose
+insulin
+bmi
+pedigree
+age
+
+- improved all algos, some not as much (although this is covered in other places)
+- intuitive sense? maybe read literature and show these are important factors compared to others. also that these are mutually uncorrelated
+- can reference first couple splits in the decision and show that these are much same (eg glucose, bmi). therefore these are important factors, at least for information gain etc, so therefore correlated with class. also not so much correlated with eachother, as the DTs would not see much gain in splitting on two similar variables A and B, as the first split would have removed much of correlation with class that A had, which would also remove correlation with class that B had, therefore no reason to split
+
 
 \subsubsection{Decision Trees}
 
@@ -89,13 +99,40 @@ what features did CFS select?
 
 % Comparison between the DT classifiers and discussion of pruning
 
+
+
+- similarity: glucose was used as first split for all trees, second split level is also similar
+- difference: much larger than equivalent unpruned, also less accurate suggesting overfitting
+- then segway into generic desc of pruning. how it works, how it leads to shorter tree and still has more accuracy
+
+
+
 \subsubsection{Tree-based Classifiers}
 
 % Comparison between the tree-based classifiers
-
 % Compare the accuracy of the tree-based classifiers (DT, Bagging, Boosting and RF).
+
+how is this different from overall comparison of classifiers? basically just a comparison of nominal stuff
+dont wanna overlap too much
+i guess overall focuses on nominal vs numeric, and looks at best / worst overall
+
+which DT method was used for dagg/boost/rf?
+
+
+- boosting good even without CFS. try to speculate why. literature? is there a clear link between algos? boosting creates an iterative ensemble(?) of trees that focus on rows that we failed to predict, this is similar to having a number of uncorrelated features/trees QED? and then once CFS is used this advantage goes away
+- RF bad? if this uses very short trees we can blame this on inability to capture complexity similar to numeric data.
+- read literature about DFS J48 to figure out why its much better than other algos / MyDT. prob just generically list the "improvments" over ID3 and just go therefore it performs better.
+- similar to bagging? bagging good bc reduces overfitting therefore good. if using small trees => still not able to fully capture complexity, therefore not as good as full J48 but better than RF. what tree does this use? if it uses full ID3 trees then this doesn't hold since its worse than them.
 
 
 \subsubsection{?Anything else that we consider important}
 % Include anything else that you consider important
 
+Nominal better? Weird?? Discussion point?
+or is the data being predicted here actually different? if not its probs just overfitting (to noise) or something when given more DOF(?) and thats something to mention.
+
+
+could also talk about why J48 DT is the best. again, look into specifics of J48 and try to justify that it had all advantages of DT without disadvantages (+ advantages that other algos had).
+
+
+if ur reading this then im already dead. jks im super busy until like 7pm today so ill turn these into actual paras when i get back.
