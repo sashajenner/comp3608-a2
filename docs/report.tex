@@ -8,6 +8,43 @@
 \usepackage[table]{xcolor}
 \usepackage{xcolor}
 
+\definecolor{lightblue}{cmyk}{0.2,0,0,0}
+
+\usepackage{tikz}
+\usepackage{collcell}
+
+% https://tex.stackexchange.com/a/40603 - only color in table body
+\usepackage{etoolbox}
+
+\newtoggle{inTableHeader}% Track if still in header of table
+\toggletrue{inTableHeader}% Set initial value
+\newcommand*{\StartTableHeader}{\global\toggletrue{inTableHeader}}%
+\newcommand*{\EndTableHeader}{\global\togglefalse{inTableHeader}}%
+
+% Redefine tabular to initialize \StartTableHeader at start and end
+\let\OldTabular\tabular%
+\let\OldEndTabular\endtabular%
+\renewenvironment{tabular}{\StartTableHeader\OldTabular}{\OldEndTabular\StartTableHeader}%
+
+ %The min, mid and max values
+\newcommand*{\MinNumber}{50}%
+\newcommand*{\MidNumber}{75} %
+\newcommand*{\MaxNumber}{100}%
+
+%Apply the gradient macro
+\newcommand{\ApplyGradient}[1]{%
+  \iftoggle{inTableHeader}{#1}{
+    \ifdim #1 pt > \MidNumber pt
+        \pgfmathsetmacro{\PercentColor}{max(min(100.0*(#1 - \MidNumber)/(\MaxNumber-\MidNumber),100.0),0.00)} %
+        \hspace{-0.33em}\colorbox{green!\PercentColor!yellow}{#1}
+    \else
+        \pgfmathsetmacro{\PercentColor}{max(min(100.0*(\MidNumber - #1)/(\MidNumber-\MinNumber),100.0),0.00)} %
+        \hspace{-0.33em}\colorbox{red!\PercentColor!yellow}{#1}
+    \fi
+  }}
+
+\newcolumntype{R}{>{\collectcell\ApplyGradient}c<{\endcollectcell}}
+
 \begin{document}
 
 \title{Predicting Diabetes in the Pima Indians: An Investigation into Classification Strategies}

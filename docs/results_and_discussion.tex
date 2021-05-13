@@ -3,14 +3,14 @@
 \subsection{Classifier Accuracy}
 The canonical Na\"ive Bayes (NB)\nomenclature{NB}{Na\"ive Bayes} and Decision Tree (DT)\nomenclature{DT}{Decision Tree} classification algorithms were implemented with tie decisions resulting in a `yes' and are hereafter referred to as MyNB and MyDT respectively. 10-fold stratified cross validation was then performed on these algorithms and 12 other inbuilt Weka algorithms using the dataset described in section \ref{sec:data} after normalisation and discretisation for the numeric and nominal classification algorithms respectively.
 
-Tables \ref{tab:acc:num} and \ref{tab:acc:nom} present all the resulting accuracy figures for each tested classification algorithm, shown in percentage (\%) to 4 d.p.\nomenclature{d.p. decimal points} , using both the full dataset and the dataset after CFS.
+Tables \ref{tab:acc:num} and \ref{tab:acc:nom} present all the resulting accuracy figures for each tested classification algorithm, shown in percentage (\%) to 4 d.p.\nomenclature{d.p. decimal points} , using both the full dataset and the dataset after CFS, and coloured for ease of comparison.
 
 \begin{table}[h]
     \caption{The 10-fold stratified cross validation accuracy in percentage (\%) of each tested \textit{numeric} classification algorithm using the dataset with and without CFS. \label{tab:acc:num}}
     \begin{center}
-    \begin{tabular}{|m{2cm}*{8}{|c}|}
+    \begin{tabular}{|m{2cm}*{8}{|R}|}
         \hline
-        \textbf{Numeric Data} & ZeroR & 1R & 1NN &5NN &NB &MLP &SVM & \color{blue}MyNB \\
+        \textbf{Numeric Data} & ZeroR & 1R & 1NN &5NN &NB &MLP &SVM & \color{blue}MyNB \EndTableHeader \\
         \hline
         No feature selection & 65.1042 &70.8333 &67.8385 &74.4792 &75.1302 &75.3906 &76.3021 &75.2614 \\
         \hline
@@ -23,9 +23,9 @@ Tables \ref{tab:acc:num} and \ref{tab:acc:nom} present all the resulting accurac
 \begin{table}[h]
     \caption{The 10-fold stratified cross validation accuracy in percentage (\%) of each tested \textit{nominal} classification algorithm using the dataset with and without CFS. \label{tab:acc:nom}}
     \begin{center}
-    \begin{tabular}{|m{2cm}*{6}{|c}|}
+    \begin{tabular}{|m{2cm}*{6}{|R}|}
         \hline
-        \textbf{Nominal Data} & DT unpruned &DT pruned &\color{blue}MyDT &Bagg &Boost &RF \\
+        \textbf{Nominal Data} & DT unpruned &DT pruned &\color{blue}MyDT &Bagg &Boost &RF \EndTableHeader \\
         \hline
         No feature selection &75.0000 & 75.3906 &73.4484 &74.8698&76.1719&73.1771 \\
         \hline
@@ -45,7 +45,9 @@ Decision trees were built on the full discretised dataset using three different 
 
 % In the discussion, compare the performance of the classifiers, with and without feature selection. Compare your implementations of NB and DT with Weka’s.
 
-The performance of the classifiers largely varied between different algorithms and datasets.
+The accuracy of the 14 classifiers ranged roughly from 65\% to 80\% with a mean of $\sim$74.5\%. The 6 nominal classifiers performed much better than the 8 numeric ones with a mean accuracy of $\sim$76.8\% compared to $\sim$72.8\%.
+
+Using CFS improved or equalled the performance of every classifier, with an average improvement in accuracy of $\sim$2.1\%.
 
 For the numeric data, there was a large variance in performance between different algorithms, ranging from around 65\% to almost 77\%.
 
