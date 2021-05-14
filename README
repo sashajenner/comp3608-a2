@@ -1,0 +1,5 @@
+Assignment 2 of COMP3608 (Introduction to Artificial Intelligence Advanced).
+Coding is in src/
+Datasets in data/
+Latex report is in docs/
+`make` to compile report and create build/MyClassifier.zip for submission to PASTA.
