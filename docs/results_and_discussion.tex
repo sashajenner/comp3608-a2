@@ -69,63 +69,29 @@ The implementations of MyNB and Weka's NB only differ in terms of their running 
 
 % Discuss the effect of the feature selection – did CFS select a subset of the original features, and if so, did the selected subset make intuitive sense to you? Was the feature selection beneficial, i.e. did it improve accuracy, or have any other advantages? Why do you think this is the case?
 
-% i listed them again here bc i kinda need to, already seems to be done in 2.1.
-% is there a reasonable order i can use? like the metric itself
-The feature selection method (CFS) selected a subset of five features from the original nine. They were, in no particular order:
+The feature selection method (CFS) selected a subset of 5 features from the original 9. As is highlighted in Table \ref{tab:cols}, these were, in no particular order:
 
 \begin{itemize}
-    \item Glucose
-    \item Insulin
+    \item Plasma glucose concentration
+    \item Serum insulin level
     \item BMI
-    \item Pedigree
+    \item Diabetes pedigree function
     \item Age
 \end{itemize}
 
-As the aim of CFS is to create a subset of features with high correlation to the class but low correlation to each other, we analyse whether the included and excluded features are as expected.
+It makes sense that this selected subset is highly correlated with the onset of diabetes but also mutually uncorrelated. \\
 
-Features relating to glucose concentration and insulin have been found to be one of the strongest predictors of future diabetes in numerous other studies containing a wide range of predictors [a][b][c][d]. Although a high (negative) correlation between plasma glucose concentration and insulin levels has been demonstrated [e] which should reduce the likelihood of selected both features in CFS, it seems their correlation with diabetes is strong enough to have both features included. 
+In fact, having diabetes is defined for the dataset in question as obtaining a plasma glucose concentration of at least 200 mg/dL, 2 hours after the ingestion of 75mg of carbohydrate solution \cite{pima}. So it is no surprise that CFS claims that glucose concentration is a strong predictor of the onset of diabetes. Furthermore, the level of insulin has been found to be one of the strongest predictors of the onset of diabetes in numerous studies containing a wide range of attributes \cite{a}\cite{b}\cite{c}\cite{d}. Although glucose concentration and insulin levels often exhibit a significant inversely-correlated relationship when measured via an oral glucose tolerance test (OGTT)\nomenclature{OGTT}{Oral glucose tolerance test} and insulin release test (IRT)\nomenclature{IRT}{Insulin release test} respectively \cite{e}, the original dataset description is vague as to how the insulin level was recorded. In fact, Figure \ref{fig:corr} shows that all of the 5 selected attributes in the CFS subset are mutually uncorrelated, as expected.
 
-Similarly, BMI and other weight related features have been found to be a good predictor of future diabetes [a][c][d]. Within our dataset, both BMI and Triceps skin fold thickness are weight-related features and have been shown to have significant mutual correlation [f], which could explain why CFS only included one of these features (BMI). Comparatively, BMI has been found to have higher association with health-related risk factors than triceps skin fold thickness [g][h], which may explain why it was prioritised by CFS as a predictor for diabetes.
+Furthermore, BMI and other weight-related features have also previously been found to be good predictors of the onset of diabetes \cite{a}\cite{c}\cite{d}. Specifically within our dataset, the weight-related features are BMI and triceps skin fold thickness, which are known to be significantly correlated \cite{f}. However, BMI has a higher association with health-related risk factors than triceps skin fold thickness \cite{g}\cite{h}, which explains why it was prioritised in the CFS subset.
 
-The other features selected by CFS have also been found to have high correlation with diabetes, which also remaining relatively independent from other risk factors. In particular, age has been show to be both a strong predictor [i] and also relatively uncorrelated with other features, as demonstrated by the inclusion of age in PCA on the same dataset [c]. Family history of diabetes has also been shown to be a relatively strong and independent predictor of diabetes, explaining its inclusion in CFS [j].
-
-
-[a] https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2551654/
-this one says best predictors are closely related to glucose and BMI from a selection of 21
-
-[b] https://care.diabetesjournals.org/content/30/6/1544
-this one says insulin is significant
-
-[c] https://www.sciencedirect.com/science/article/pii/S2352914819300176
-this is literally the same as us. same dataset, they used PCA-based method, which is just for uncorrelation i think. got Glucose, BMI, blood pressure, age
-
-[d] https://bmcendocrdisord.biomedcentral.com/articles/10.1186/s12902-019-0436-6
-dataset also had age, blood pressure. selected glucose, bmi with other stuff. other factors might be better, but it at least didn't select blood pressure as expected
-
-[e] https://pubmed.ncbi.nlm.nih.gov/12919921/
-negative coreraltion between glucose nad insulin
-
-[f] https://www.ijcmph.com/index.php/ijcmph/article/view/6059
-high correlation bmi to skin fold
-
-[g] https://files.eric.ed.gov/fulltext/EJ1201447.pdf
-[h] https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2697002/
-both show BMI is more related to heath risk factors than skin fold thickness, even after conjtrolling for a numebr of hter factors. small but statistically significant difference
-
-[i] https://www.sciencedirect.com/science/article/abs/pii/S1871402116303009
-
-[j] https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4038917/
-
-
-
+The two other features selected by CFS are also known to have a high correlation with diabetes. In particular, age has been shown to be both a strong predictor \cite{i} and also relatively uncorrelated with other features, as demonstrated by its inclusion in principal component analysis (PCA)\nomenclature{PCA}{Principal component analysis} in a different paper using the same dataset \cite{c}. Family history of diabetes has also been shown to be a relatively strong and independent predictor of diabetes \cite{j}. \\
 
 % then show it was better / other advantages (speed, memory). state why.
 
-Across all models, when training using features selected by CFS the accuracy was always at least as good as no feature selection. This affect was most apparent with tree-based models, with the accuracy increasing ~5\% in some cases (i.e. DT unpruned, MyDT, RF). This is likely due to a reduction in over fitting, stemming from the removal of features that did not add much information as they were already highly correlated with other features - a key component of CFS. When highly correlated features were included, the algorithms would use this extra feature to fit to noise in the data.
+Across all models, the accuracy either improved or stayed the same after using CFS compared to no feature selection, with an average improvement in accuracy of $\sim$2.1\%. This effect was most apparent with tree-based models, with the accuracy improving by $\sim$5\% for DT pruned and unpruned, MyDT and RF. This is likely due to a reduction in over fitting, stemming from the removal of features that did not add much information or were otherwise terrible predictors of the onset of diabetes.
 
-Another advantage of CFS is the reduction in data size with little or no decrease in performance. This can be especially powerful in pruning large datasets that have many features which are highly correlated with each other  or poorly correlated with the target classification. In our dataset for example, the number of features was reduced by over 40\%. Not only does this allow for smaller file sizes and therefore faster training, but it can also increase the interpretability of models as there are less features being used (e.g. when visualising decision trees).
-
-
+Another advantage of CFS is the reduction in memory size and computational time. This is especially noticeable when pruning large datasets that have many features which are highly correlated with each other  or poorly correlated with the target classification. In our dataset for example, the number of features was reduced by over 40\%. Not only does this allow for smaller file sizes and therefore faster training and testing, but it can also increase the interpretability of models as there are less features being used when visualising decision trees.
 
 \subsubsection{Decision Trees}
 
