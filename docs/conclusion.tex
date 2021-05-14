@@ -4,11 +4,9 @@
 % Meaningful conclusions based on the results
 % Meaningful future work suggested
 
-The main findings of our results include that CFS is hugely beneficial for all non-trivial classifiers but especially for tree-based classifiers. CFS also highlighted the attributes with the best predictive power for the onset of diabetes, including age which is quite interesting. In fact, younger Pima Indian females were less likely to develop diabetes given a medium glucose level according to the pruned decision tree in Figure \ref{fig:dt_prune} than older females.
+The main findings of our results include that CFS is hugely beneficial for all non-trivial classifiers but especially for tree-based classifiers. CFS also highlighted the attributes with the best predictive power of the onset of diabetes, including age which is quite interesting. In fact, younger Pima Indian females were less likely to develop diabetes given a medium glucose level according to the pruned decision tree in Figure \ref{fig:dt_prune} than older females.
 
-Furthermore, nominal classifiers performed significantly better than numeric classifiers on this dataset with a $\sim$4\% higher mean accuracy. This suggests that perhaps relationships in the dataset between different attributes and the onset of diabetes is highly discrete and non-continuous.
+Furthermore, nominal classifiers performed significantly better than numeric classifiers on this dataset with a $\sim$4\% higher mean accuracy. This was interesting as raw numeric data should in theory contain more useful or accessible information than equivalent discrete date, yet the model performance suggests otherwise.
 
-Finally, it was also found that 
-\\
+Future work to be done includes using more complex and powerful classification methods, such as deep learning, to try and develop a more accurate classifier on this dataset. As well as, investigating the same 14 classifiers but on a completely new and unrelated dataset in order to draw more well-rounded conclusions. Furthermore, we would like to investigate why some ensemble methods (particularly RF and Bagging) performed worse than single tree methods. This subverted our expectations that ensembles should often perform equally well or better than the single tree methods, and so we believe it deserves further exploration.
 
-Future work to be done includes using deep learning methods to try and develop a more accurate classifier on this dataset. As well as, investigating the same 14 classifiers but on a completely new and unrelated dataset in order to draw more well-rounded conclusions.
