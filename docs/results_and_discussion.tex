@@ -87,6 +87,11 @@ Furthermore, BMI and other weight-related features have also previously been fou
 
 The two other features selected by CFS are also known to have a high correlation with diabetes. In particular, age has been shown to be both a strong predictor \cite{i} and also relatively uncorrelated with other features, as demonstrated by its inclusion in principal component analysis (PCA)\nomenclature{PCA}{Principal component analysis} in a different paper using the same dataset \cite{c}. Family history of diabetes has also been shown to be a relatively strong and independent predictor of diabetes \cite{j}. \\
 
+\begin{figure}[htp] \centering{
+    \includegraphics[scale=0.75]{corr.pdf}}
+\caption{Correlation matrix using Weka with each variable from CFS.\label{fig:corr}}
+\end{figure}
+
 % then show it was better / other advantages (speed, memory). state why.
 
 Across all models, the accuracy either improved or stayed the same after using CFS compared to no feature selection, with an average improvement in accuracy of $\sim$2.1\%. This effect was most apparent with tree-based models, with the accuracy improving by $\sim$5\% for DT pruned and unpruned, MyDT and RF. This is likely due to a reduction in over fitting, stemming from the removal of features that did not add much information or were otherwise terrible predictors of the onset of diabetes.
