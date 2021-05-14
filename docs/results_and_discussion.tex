@@ -10,7 +10,7 @@ Tables \ref{tab:acc:num} and \ref{tab:acc:nom} present all the resulting accurac
     \begin{center}
     \begin{tabular}{|m{2cm}*{8}{|R}|}
         \hline
-        \textbf{Numeric Data} & ZeroR & 1R & 1NN &5NN &NB &MLP &SVM & \color{blue}MyNB \EndTableHeader \\
+        \textbf{Numeric Data} & ZeroR\nomenclature{ZeroR}{Classifier that always predicts the majority class} & 1R\nomenclature{1R}{One Rule} & 1NN\nomenclature{kNN}{k-Nearest Neighbours} &5NN &NB &MLP\nomenclature{MLP}{Multilayer Perceptron} &SVM\nomenclature{SVM}{Support Vector Machines} & \color{blue}MyNB \EndTableHeader \\
         \hline
         No feature selection & 65.1042 &70.8333 &67.8385 &74.4792 &75.1302 &75.3906 &76.3021 &75.2614 \\
         \hline
@@ -25,7 +25,7 @@ Tables \ref{tab:acc:num} and \ref{tab:acc:nom} present all the resulting accurac
     \begin{center}
     \begin{tabular}{|m{2cm}*{6}{|R}|}
         \hline
-        \textbf{Nominal Data} & DT unpruned &DT pruned &\color{blue}MyDT &Bagg &Boost &RF \EndTableHeader \\
+        \textbf{Nominal Data} & DT unpruned &DT pruned &\color{blue}MyDT &Bagg\nomenclature{Bagg}{Bagging} &Boost\nomenclature{Boost}{Boosting} &RF\nomenclature{RF}{Random Forest} \EndTableHeader \\
         \hline
         No feature selection &75.0000 & 75.3906 &73.4484 &74.8698&76.1719&73.1771 \\
         \hline
@@ -45,24 +45,22 @@ Decision trees were built on the full discretised dataset using three different 
 
 % In the discussion, compare the performance of the classifiers, with and without feature selection. Compare your implementations of NB and DT with Weka’s.
 
-The accuracy of the 14 classifiers ranged roughly from 65\% to 80\% with a mean of $\sim$74.5\%. The 6 nominal classifiers performed much better than the 8 numeric ones with a mean accuracy of $\sim$76.8\% compared to $\sim$72.8\%.
+Overall, the accuracy of the 14 classifiers ranged roughly between 65\% and 80\% with a mean of $\sim$74.5\%. \\
 
-Using CFS improved or equalled the performance of every classifier, with an average improvement in accuracy of $\sim$2.1\%.
+The best performing numeric classifier was the SVM, both with and without feature selection, where it achieved an accuracy of $\sim$76.7\% and $\sim$76.3\% respectively. Similar in performance were MyNB, NB and MLP, with accuracies roughly within 1\% of the SVM. This small difference in accuracies ranging from 75\% to 77\% is not necessarily indicative of algorithmic superiority but may be the effect of random noise in the testing dataset.
 
-For the numeric data, there was a large variance in performance between different algorithms, ranging from around 65\% to almost 77\%.
+On the other hand, the worst performing numeric classifiers were ZeroR, 1R and 1NN, achieving accuracies between 65\% and 71\%. These simple algorithms are clearly not complex enough to capture patterns in the data, but are instead good points for comparison as to what is easily achievable (for example by predicting the majority class in ZeroR).
 
-The best performing algorithm was the SVM, both with and without feature selection, where it achieved an accuracy of 76.9\% and 76.3\% respectively. Both NB and MLP were similar in performance, generally within only 1\% of the SVM accuracy. Therefore this difference may not indicate a significant difference in performance, but could instead be due to random noise in the testing \textbf{Validation??} dataset.
+Within the nominal classifiers, the highest accuracy was $\sim$79.4\%, and was obtained by both the pruned and unpruned DT using feature selection. Despite this, all of the nominal classifiers performed well using feature selection, with accuracies ranging roughly between 78\% and 79.5\%. Without feature selection, the best performing nominal classifier was Boost with an accuracy of $\sim$76.2\%.
 
-On the other hand, the worst performing algorithms were ZeroR, 1R, and 1NN, achieving accuracies between 65\% and 71\%. These simple algorithms were likely not complex enough to capture patterns in the data that other algorithms were able to recognise (i.e. SVM, MLP, NB).
+The worst performing nominal classifier was MyDT, with and without feature selection, where it achieved an accuracy of $\sim$78.3\% and $\sim$73.4\% respectively.
+\\
 
-
-Within the nominal data, etc
-however all accuracies were between 65\% and 80\%.
-
+The 6 nominal classifiers clearly performed much better than the 8 numeric ones with a mean accuracy of $\sim$76.8\% compared to $\sim$72.8\%. In addition, using CFS improved or equalled the performance of every classifier, with an average improvement in accuracy of $\sim$2.1\%. \\
 
 % should our NB be the same as wekas? how do the algos differ
 
-
+The implementations of MyNB and Weka's NB only differ in terms of their running time performance. In fact, the minimal differences in accuracies evident in Table \ref{tab:acc:num} are most likely the result of different 10-fold data stratifications used in the cross validation accuracy calculations. On the other hand, the implementations of MyDT and Weka's two DTs differ profoundly. MyDT is built using the ID3 algorithm without pruning, whilst Weka uses J48 (an implementation of the 8th revision of the C4.5 algorithm \cite{weka}) which is very similar to ID3 but using the normalised information gain ratio as its splitting criterion. This resulted in Weka's two DTs performing better than MyDT with and without feature selection.
 
 
 \subsubsection{Feature Selection}
